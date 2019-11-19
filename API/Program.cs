@@ -24,6 +24,7 @@ namespace API
                 try {
                     var context=services.GetRequiredService<DataContext>();
                     context.Database.Migrate();  // ta ukaz kreira bazo, če še ne obstaja
+                    Seed.SeedData(context); // drugi način seed-anja podatkov
                 } catch (Exception ex) {
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex,"Med migracijo je prišlo do napake!");
